@@ -1,0 +1,17 @@
+<div class="container"
+     fxLayout="column"
+     fxLayoutGap="10px">
+
+  <mat-list fxFlex>
+    <mat-list-item *ngFor="let recipe of recipes">
+      <img matListAvatar src={{recipe.image}} alt={{recipe.name}}>
+      <h1 matLine> {{recipe.name}} </h1>
+      <p matLine>
+        <span> {{recipe.description}} </span>
+      </p>
+      <p matLine> {{recipe.ingredients}} </p>
+      <p matLine> {{recipe.preparation}} </p>
+    </mat-list-item>
+  </mat-list>
+
+</div>
