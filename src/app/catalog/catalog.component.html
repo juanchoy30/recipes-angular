@@ -2,16 +2,14 @@
      fxLayout="column"
      fxLayoutGap="10px">
 
-  <mat-list fxFlex>
-    <mat-list-item *ngFor="let recipe of recipes">
+  <mat-grid-list fxFlex *ngIf="recipes" cols="2" rowHeight="200px">
+    <mat-grid-tile *ngFor="let recipe of recipes" colspan="1" rowspan="2">
       <img matListAvatar src={{recipe.image}} alt={{recipe.name}}>
-      <h1 matLine> {{recipe.name}} </h1>
-      <p matLine>
-        <span> {{recipe.description}} </span>
-      </p>
-      <p matLine> {{recipe.ingredients}} </p>
-      <p matLine> {{recipe.preparation}} </p>
-    </mat-list-item>
-  </mat-list>
+      <mat-grid-tile-footer class="text">
+        <h2 matLine> {{recipe.name}} </h2>
+        <p matLine> {{recipe.description}} </p>
+      </mat-grid-tile-footer>
+    </mat-grid-tile>
+  </mat-grid-list>
 
 </div>

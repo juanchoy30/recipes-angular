@@ -1,3 +1,6 @@
+import { Ingredients } from './ingredients';
+import { Preparation } from './preparation';
+
 export class Recipe {
     id : number;
     name: string;
@@ -5,6 +8,6 @@ export class Recipe {
     category: string;
     featured: boolean;
     description: string;
-    ingredients: string;
-    preparation: string;
+    ingredients: Ingredients[];
+    preparation: Preparation[];
 }

@@ -17,8 +17,5 @@ export class CatalogComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSelect(recipe: Recipe) {
-    this.selectedRecipe = recipe;
-  }
 
 }
