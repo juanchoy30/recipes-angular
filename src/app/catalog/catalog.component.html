@@ -2,14 +2,25 @@
      fxLayout="column"
      fxLayoutGap="10px">
 
-  <mat-grid-list fxFlex *ngIf="recipes" cols="2" rowHeight="200px">
-    <mat-grid-tile *ngFor="let recipe of recipes" colspan="1" rowspan="2">
-      <img matListAvatar src={{recipe.image}} alt={{recipe.name}}>
-      <mat-grid-tile-footer class="text">
-        <h2 matLine> {{recipe.name}} </h2>
-        <p matLine> {{recipe.description}} </p>
-      </mat-grid-tile-footer>
-    </mat-grid-tile>
-  </mat-grid-list>
+     <div fxFlex>
+      <div>
+        <h1>Catalog</h1>
+        <hr>
+      </div>
+    </div>
 
+  <div fxFlex>
+    <mat-grid-list cols="2" rowHeight="200px">
+      <mat-grid-tile *ngFor="let recipe of recipes" colspan="1" rowspan="2" (click) = "onSelect(recipe)">
+        <img matListAvatar src={{recipe.image}} alt={{recipe.name}}>
+        <mat-grid-tile-footer class="text">
+          <h2 matLine> {{recipe.name}} </h2>
+          <p matLine> {{recipe.description}} </p>
+        </mat-grid-tile-footer>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+  
+  <app-recipedetail  [recipe] = "selectedRecipe"></app-recipedetail>
 </div>
