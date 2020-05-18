@@ -12,12 +12,18 @@ import { AppComponent } from './app.component';
 import 'hammerjs';
 import { CatalogComponent } from './catalog/catalog.component';
 import { RecipedetailComponent } from './recipedetail/recipedetail.component';
+import { RecipeService } from './services/recipe.service';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     CatalogComponent,
-    RecipedetailComponent
+    RecipedetailComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -27,9 +33,10 @@ import { RecipedetailComponent } from './recipedetail/recipedetail.component';
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

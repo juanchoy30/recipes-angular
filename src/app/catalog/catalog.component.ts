@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../shared/recipe';
-import { RECIPES } from '../shared/recipes';
+import { RecipeService } from '../services/recipe.service';
 
 @Component({
   selector: 'app-catalog',
@@ -9,16 +9,13 @@ import { RECIPES } from '../shared/recipes';
 })
 export class CatalogComponent implements OnInit {
 
-  recipes: Recipe[] = RECIPES;
+  recipes: Recipe[];
   selectedRecipe: Recipe;
 
-  constructor() { }
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
-  }
-
-  onSelect(recipe: Recipe) {
-    this.selectedRecipe = recipe;
+    this.recipes = this.recipeService.getRecipes();
   }
 
 }

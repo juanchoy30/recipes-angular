@@ -6,7 +6,7 @@
     fxLayoutGap="10px"
     fxLayoutGap.xs="0">
     
-  <div fxFlex *ngIf="recipe">
+  <div fxFlex="100" *ngIf="recipe">
     <mat-card>
       <mat-card-header>
         <mat-card-title>
@@ -30,6 +30,9 @@
           </mat-list-item>
         </mat-list>
       </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="goBack()">BACK</button>
+      </mat-card-actions>
     </mat-card>
   </div>
 

@@ -11,7 +11,7 @@
 
   <div fxFlex>
     <mat-grid-list cols="2" rowHeight="200px">
-      <mat-grid-tile *ngFor="let recipe of recipes" colspan="1" rowspan="2" (click) = "onSelect(recipe)">
+      <mat-grid-tile *ngFor="let recipe of recipes" colspan="1" rowspan="2" [routerLink]="['/recipedetail', recipe.id]">
         <img matListAvatar src={{recipe.image}} alt={{recipe.name}}>
         <mat-grid-tile-footer class="text">
           <h2 matLine> {{recipe.name}} </h2>
@@ -21,6 +21,4 @@
     </mat-grid-list>
   </div>
 
-  
-  <app-recipedetail  [recipe] = "selectedRecipe"></app-recipedetail>
 </div>

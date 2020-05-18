@@ -2,7 +2,7 @@ import { Recipe } from './recipe';
 
 export const RECIPES: Recipe[] = [
     {
-        id: 0,
+        id: '0',
         name: 'Chicken Tostadas',
         image: '/assets/images/chicken-tostadas.jpg',
         category: 'meats',
@@ -45,7 +45,7 @@ export const RECIPES: Recipe[] = [
         ]  
     },
     {
-        id: 1,
+        id: '1',
         name: 'Carrot Cake',
         image: '/assets/images/carrot-cake.jpg',
         category: 'desserts',
@@ -92,7 +92,7 @@ export const RECIPES: Recipe[] = [
         ]
     },
     {
-        id: 2,
+        id: '2',
         name: 'Peanut Butter Chip Chocolate Cookies',
         image: '/assets/images/peanut-butter-chip-chocolate-cookies.jpg',
         category: 'desserts',
@@ -125,7 +125,7 @@ export const RECIPES: Recipe[] = [
         ]
     },
     {
-        id: 3,
+        id: '3',
         name: 'Banana Cheesecake with Banana Cream Pie Topping',
         image: '/assets/images/banana-cheesecake-with-banana-cream-pie-topping.jpg',
         category: 'desserts',
