@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 import { Recipe } from '../shared/recipe';
 import { RecipeService } from '../services/recipe.service';
+import { MatGridList } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-catalog',
@@ -9,13 +11,30 @@ import { RecipeService } from '../services/recipe.service';
 })
 export class CatalogComponent implements OnInit {
 
+  @ViewChild('grid') grid: MatGridList;
+
   recipes: Recipe[];
   selectedRecipe: Recipe;
+  gridByBreakpoint = {
+    xl: 2,
+    lg: 2,
+    md: 2,
+    sm: 2,
+    xs: 1
+  }
 
-  constructor(private recipeService: RecipeService) { }
+
+  constructor(private recipeService: RecipeService,
+    private observableMedia: ObservableMedia) { }
 
   ngOnInit() {
     this.recipes = this.recipeService.getRecipes();
+  }
+
+  ngAfterContentInit() {
+    this.observableMedia.asObservable().subscribe((change: MediaChange) => {
+      this.grid.cols = this.gridByBreakpoint[change.mqAlias];
+    });
   }
 
 }

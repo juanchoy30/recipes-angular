@@ -18,14 +18,14 @@
         <p>{{recipe.description}}</p>
         <mat-list>
           <h3>Ingredients</h3>
-          <mat-list-item *ngFor="let ingredients of recipe.ingredients">
+          <mat-list-item class="list" *ngFor="let ingredients of recipe.ingredients">
             <li matLine> {{ingredients.ingredient}} </li>
           </mat-list-item>
         </mat-list>
         <mat-list>
           <h3>Preparation</h3>
-          <mat-list-item *ngFor="let preparation of recipe.preparation">
-              <h4 matLine> {{preparation.step}} </h4>
+          <mat-list-item class="step" *ngFor="let preparation of recipe.preparation">
+              <h4 matLine> <span class="badge badge-success">{{preparation.step}} </span></h4>
               <p matLine> {{preparation.content}} </p>
           </mat-list-item>
         </mat-list>

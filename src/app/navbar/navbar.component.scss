@@ -1,0 +1,14 @@
+nav {
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+a:visited {
+    color: white;
+}
+
+.active {
+    background: #282a2e;
+}

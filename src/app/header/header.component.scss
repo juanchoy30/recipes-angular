@@ -7,23 +7,7 @@ $tertiaryColor: #ffb10a;
     padding: $up-down $left-right;
 }
 
-.toolbar {
-    background-color: $menucolor;
-    color: white;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
-
 .jumbotron {
     background-color: $tertiaryColor;
     @include padding-margin(35px, 40px);
-}
-
-.active {
-    background: #282a2e;
-}
-
-a:visited {
-    color: white;
 }

@@ -1,4 +1,4 @@
-<div class="container jumbotron"
+<div class="jumbotron jumbotron-fluid"
     fxLayout="row"
     fxLayout.sm="column" 
     fxLayout.xs="column" 
@@ -17,10 +17,5 @@
     </div>
     <div fxFlex></div>
   </div>
-  <mat-toolbar class="toolbar">
-    <span><img src="/assets/images/Logo-white.png" height=30 width=41></span>
-    <a mat-button routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>
-    <a mat-button routerLinkActive="active"><span class="fa fa-info fa-lg"></span> About</a>
-    <a mat-button routerLink='/catalog' routerLinkActive="active"><span class="fa fa-list fa-lg"></span> Catalog</a>
-    <a mat-button routerLinkActive="active"><span class="fa fa-address-card fa-lg"></span> Contact</a>
-  </mat-toolbar>
+
+  <app-navbar class="toolbar"></app-navbar>
