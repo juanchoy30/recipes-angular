@@ -14,7 +14,6 @@ export class CatalogComponent implements OnInit {
   @ViewChild('grid') grid: MatGridList;
 
   recipes: Recipe[];
-  selectedRecipe: Recipe;
   gridByBreakpoint = {
     xl: 2,
     lg: 2,
@@ -28,8 +27,7 @@ export class CatalogComponent implements OnInit {
     private observableMedia: ObservableMedia) { }
 
   ngOnInit() {
-    this.recipeService.getRecipes()
-      .then(recipes => this.recipes = recipes);
+    this.recipeService.getRecipes().subscribe(recipes => this.recipes = recipes);
   }
 
   ngAfterContentInit() {

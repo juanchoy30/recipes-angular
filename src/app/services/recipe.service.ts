@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { of, Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { Recipe } from '../shared/recipe';
 import { RECIPES } from '../shared/recipes';
 
@@ -9,15 +11,11 @@ export class RecipeService {
 
   constructor() { }
 
-  getRecipes(): Promise<Recipe[]>{
-    return new Promise(resolve => {
-      setTimeout(() => resolve(RECIPES),2000);
-    });
+  getRecipes(): Observable<Recipe[]> {
+    return of(RECIPES).pipe(delay(2000));
   }
 
-  getRecipe(id: string): Promise<Recipe> {
-    return new Promise(resolve => {
-      setTimeout(() => resolve(RECIPES.filter((recipe) => (recipe.id === id))[0]), 2000);
-    });  
+  getRecipe(id: string): Observable<Recipe> {
+    return of(RECIPES.filter((recipe) => (recipe.id === id))[0]).pipe(delay(2000));
   }
 }
