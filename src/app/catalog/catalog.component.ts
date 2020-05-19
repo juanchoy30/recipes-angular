@@ -28,7 +28,8 @@ export class CatalogComponent implements OnInit {
     private observableMedia: ObservableMedia) { }
 
   ngOnInit() {
-    this.recipes = this.recipeService.getRecipes();
+    this.recipeService.getRecipes()
+      .then(recipes => this.recipes = recipes);
   }
 
   ngAfterContentInit() {

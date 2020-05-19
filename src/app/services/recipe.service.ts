@@ -9,11 +9,15 @@ export class RecipeService {
 
   constructor() { }
 
-  getRecipes(): Recipe[]{
-    return RECIPES
+  getRecipes(): Promise<Recipe[]>{
+    return new Promise(resolve => {
+      setTimeout(() => resolve(RECIPES),2000);
+    });
   }
 
-  getRecipe(id: string): Recipe {
-    return RECIPES.filter((recipe) => (recipe.id === id))[0];
+  getRecipe(id: string): Promise<Recipe> {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(RECIPES.filter((recipe) => (recipe.id === id))[0]), 2000);
+    });  
   }
 }

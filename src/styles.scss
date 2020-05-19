@@ -3,7 +3,14 @@
 @import '../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
 // some basic resets 
 
+$tertiaryColor: #ffb10a;
+
 body { 
   padding: 0; 
   margin: 0; 
+}
+
+.spinner-grow {
+  width: 4rem; 
+  height: 4rem;
 }
