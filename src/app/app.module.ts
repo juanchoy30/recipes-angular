@@ -18,6 +18,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     RecipedetailComponent,
     HeaderComponent,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,

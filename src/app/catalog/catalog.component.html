@@ -8,9 +8,9 @@
       </div>
     </div>
 
-  <div fxFlex *ngIf="recipes">
+  <div fxFlex>
     <mat-grid-list cols="2" #grid rowHeight="300px" gutterSize="5px">
-      <mat-grid-tile *ngFor="let recipe of recipes" colspan="1" rowspan="1" [routerLink]="['/recipedetail', recipe.id]">
+      <mat-grid-tile *ngFor="let recipe of recipes" [routerLink]="['/recipedetail', recipe.id]" appHighlight>
         <img matListAvatar src={{recipe.image}} alt={{recipe.name}}>
         <mat-grid-tile-footer class="text">
           <h2 matLine> {{recipe.name}} </h2>
@@ -26,7 +26,4 @@
     </div>
     <h4>Loading . . . Please Wait</h4>
   </div>
-
-  <div fxFlex></div>
-
 </div>
