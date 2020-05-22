@@ -4,15 +4,17 @@
 
   <h2 fxFlex>Share your recipe with us</h2>
 
-  <form fxFlex novalidate [formGroup]="shareForm" (ngSubmit)="onSubmit()">
+  <form fxFlex novalidate [formGroup]="shareForm" #Sform="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="name">Please give your dish name: </label>
-      <input id="name" class="form-control" formControlName="name" placeholder="Dish Name" type="text">
+      <input id="name" class="form-control" formControlName="name" placeholder="Dish Name" type="text" required>
+      <p class="error" *ngIf="formErrors.name">{{formErrors.name}}</p>
     </div>
 
     <div class="form-group">
       <label>Please Upload a Picture of the dish</label>
-      <input class="d-flex" type="file" formControlName="image">
+      <input class="d-flex" type="file" formControlName="image" required>
+      <p class="error" *ngIf="formErrors.image">{{formErrors.image}}</p>
     </div>
     
     <div class="form-group">
@@ -21,20 +23,24 @@
         <option *ngFor="let option of category" [value]="option"> {{ option }}</option>
       </select>
     </div>
+
     <div class="form-group">
       <label for="description">Please describe your dish</label>
-      <textarea id="description" class="form-control" type="text" formControlName="description" placeholder="Dish description" rows="5"></textarea>
+      <textarea id="description" class="form-control" type="text" formControlName="description" placeholder="Dish description" rows="5" required></textarea>
+      <p class="error" *ngIf="formErrors.description">{{formErrors.description}}</p>
     </div>
 
       <label>Ingredients</label>
       <div formArrayName="ingredients">
         <div class="form-group" *ngFor="let ingredient of ingredients().controls; let i = index;">
           <div [formGroupName]="i">
-            <input type="text" class="form-control" formControlName="ingredient" placeholder="Ingredient {{i+1}}">
+            <input type="text" class="form-control" formControlName="ingredient" placeholder="Ingredient {{i+1}}" required>
+            <p class="error" *ngIf="formErrors.ingredient">{{formErrors.ingredient}}</p>
             <button class="btn btn-danger btn-sm mt-1" type="button" (click)="removeIngredients(i)"><span class="fa fa-minus fa-sm"></span>  Remove Ingredient</button>
           </div>
         </div>
       </div>
+
       <button class="btn btn-primary btn-sm" type="button" (click)="addIngredients()"><span class="fa fa-plus fa-sm"></span> Add Ingredient</button>
  
       <div class="mt-5">
@@ -48,7 +54,8 @@
                 If by some reason we would need to, we could mix and match the two ways of building forms, for example:
                 we can use ngModelto read the data and use FormBuilder for the validations. we don't have to 
                 subscribe to the form or use RxJs if we don't wish to.-->
-                <textarea id="content" class="form-control" type="text" formControlName="content" placeholder="Dish preparation, Step {{i+1}}" rows="5"></textarea>
+                <textarea id="content" class="form-control" type="text" formControlName="content" placeholder="Dish preparation, Step {{i+1}}" rows="5" required></textarea>
+                <p class="error" *ngIf="formErrors.content">{{formErrors.content}}</p>
                 <button class="btn btn-danger btn-sm mt-1" type="button" (click)="removePreparation(i)"><span class="fa fa-minus fa-sm"></span> Remove Step</button>
               </div>
             </div>
@@ -59,7 +66,7 @@
 
     
     <div class="d-flex mt-5">
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary" [disabled]="shareForm.invalid">Submit</button>
     </div>
 
   </form>

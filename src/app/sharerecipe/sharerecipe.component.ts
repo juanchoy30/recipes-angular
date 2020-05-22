@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { Recipe, Category } from '../shared/recipe';
 import { RecipeService } from '../services/recipe.service';
@@ -10,9 +10,26 @@ import { RecipeService } from '../services/recipe.service';
 })
 export class SharerecipeComponent implements OnInit {
 
+  @ViewChild('Sform') shareFormDirective;
   shareForm: FormGroup;
   sharerecipe: Recipe;
-  category = Category
+  category = Category;
+
+  formErrors = {
+    'name': '',
+    'image': '',
+    'description': '',
+    'ingredient': '',
+    'content': ''
+  };
+
+  validationMessages = {
+    'name': {'required': 'Dish name is required. Please, give your dish a name'},
+    'image': {'required': 'Image is required'},
+    'description': {'required': 'Description of the dish is required. Please give a brief description'},
+    'ingredient': {'required': 'Please do not leave empty fields'},
+    'content': {'required': 'Please do not leave empty fields'}
+  }
 
   constructor(private fb: FormBuilder,
     private recipeservice: RecipeService) { this.createForm(); }
@@ -21,13 +38,18 @@ export class SharerecipeComponent implements OnInit {
   }
   createForm() {
     this.shareForm = this.fb.group({
-      name: '',
-      image: '',
+      name: ['', Validators.required],
+      image: ['', Validators.required],
       category: 'Others',
-      description: '',
+      description: ['', Validators.required],
       ingredients: this.fb.array([]),
       preparation: this.fb.array([]),
     });
+
+    this.shareForm.valueChanges
+      .subscribe(data => this.onValueChanged(data));
+
+    this.onValueChanged(); // (re)set validation messages now
   }
 
   //Ingredients
@@ -37,7 +59,7 @@ export class SharerecipeComponent implements OnInit {
 
   newIngredient(): FormGroup {
     return this.fb.group({
-      ingredient: ''
+      ingredient: ['', Validators.required]
     })
  }
  
@@ -58,7 +80,7 @@ export class SharerecipeComponent implements OnInit {
 newPreparation(): FormGroup {
     return this.fb.group({
       step: '',
-      content: ''
+      content: ['', Validators.required]
     });
 }
 
@@ -70,11 +92,42 @@ removePreparation(i:number) {
   this.preparation().removeAt(i);
 }
 
+  //onValuechange
+  onValueChanged(data?: any) {
+    if (!this.shareForm) { return; }
+    const form = this.shareForm;
+    for (const field in this.formErrors) {
+      if (this.formErrors.hasOwnProperty(field)) {
+        // clear previous error message (if any)
+        this.formErrors[field] = '';
+        const control = form.get(field);
+        if (control && control.dirty && !control.valid) {
+          const messages = this.validationMessages[field];
+          for (const key in control.errors) {
+            if (control.errors.hasOwnProperty(key)) {
+              this.formErrors[field] += messages[key] + ' ';
+            }
+          }
+        }
+      }
+    }
+  }
+
+
 
   onSubmit() {
     this.sharerecipe = this.shareForm.value;
     console.log(this.sharerecipe);
-    this.shareForm.reset();
+    this.shareForm.reset({
+      name: '',
+      image: '',
+      category: 'Others',
+      description: '',
+      ingredients: this.fb.array([]),
+      preparation: this.fb.array([]),
+    });
+
+    this.shareFormDirective.resetForm();
   }
 
 }
