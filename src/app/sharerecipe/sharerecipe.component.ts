@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { Recipe, Category } from '../shared/recipe';
 import { RecipeService } from '../services/recipe.service';
 
@@ -12,7 +12,7 @@ export class SharerecipeComponent implements OnInit {
 
   shareForm: FormGroup;
   sharerecipe: Recipe;
-  category = Category;
+  category = Category
 
   constructor(private fb: FormBuilder,
     private recipeservice: RecipeService) { this.createForm(); }
@@ -22,6 +22,7 @@ export class SharerecipeComponent implements OnInit {
   createForm() {
     this.shareForm = this.fb.group({
       name: '',
+      image: '',
       category: 'Others',
       description: '',
       ingredients: this.fb.array([]),
