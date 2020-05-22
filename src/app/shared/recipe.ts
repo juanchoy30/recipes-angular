@@ -11,3 +11,5 @@ export class Recipe {
     ingredients: Ingredients[];
     preparation: Preparation[];
 }
+
+export const Category = ['Meats', 'Desserts', 'Pizzas', 'Salads', 'Soups', 'Others'];

@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import 'hammerjs';
@@ -19,6 +20,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { SharerecipeComponent } from './sharerecipe/sharerecipe.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { HighlightDirective } from './directives/highlight.directive';
     HeaderComponent,
     FooterComponent,
     NavbarComponent,
-    HighlightDirective
+    HighlightDirective,
+    SharerecipeComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { HighlightDirective } from './directives/highlight.directive';
     MatButtonModule,
     MatProgressSpinnerModule,
     FlexLayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [RecipeService],
   bootstrap: [AppComponent]

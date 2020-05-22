@@ -1,0 +1,60 @@
+<div class="container"
+    fxLayout="column"
+    fxLayoutGap="10px">
+
+  <h2 fxFlex>Share your recipe with us</h2>
+
+  <form fxFlex novalidate [formGroup]="shareForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="dishname">Please give your dish name: </label>
+      <input id="dishname" class="form-control" formControlName="name" placeholder="Dish Name" type="text">
+    </div>
+    <div class="form-group">
+      <label for="category">Please select the category of the dish</label>
+      <select id="category" class="custom-select" formControlName="category">
+        <option *ngFor="let option of category" [value]="option"> {{ option }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="description">Please describe your dish</label>
+      <textarea id="description" class="form-control" type="text" formControlName="description" placeholder="Dish description" rows="5"></textarea>
+    </div>
+
+      <label>Ingredients</label>
+      <div formArrayName="ingredients">
+        <div class="form-group" *ngFor="let ingredient of ingredients().controls; let i = index;">
+          <div [formGroupName]="i">
+            <input type="text" class="form-control" formControlName="ingredient" placeholder="Ingredient {{i+1}}">
+            <button class="btn btn-danger btn-sm mt-1" type="button" (click)="removeIngredients(i)"><span class="fa fa-minus fa-sm"></span>  Remove Ingredient</button>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-sm" type="button" (click)="addIngredients()"><span class="fa fa-plus fa-sm"></span> Add Ingredient</button>
+ 
+      <div class="mt-5">
+        <label for="Preparation">How do you make this dish?</label>
+        <div class="form-group">
+          <div formArrayName="preparation">
+            <div class="form-group" *ngFor="let preparation of preparation().controls; let i = index;">
+              <div [formGroupName]="i">
+                <input type="hidden" id="stepTemplate" formControlName="step" ngModel="Step {{i+1}}:">
+                <!--https://blog.angular-university.io/introduction-to-angular-2-forms-template-driven-vs-model-driven/
+                If by some reason we would need to, we could mix and match the two ways of building forms, for example:
+                we can use ngModelto read the data and use FormBuilder for the validations. we don't have to 
+                subscribe to the form or use RxJs if we don't wish to.-->
+                <textarea id="content" class="form-control" type="text" formControlName="content" placeholder="Dish preparation, Step {{i+1}}" rows="5"></textarea>
+                <button class="btn btn-danger btn-sm mt-1" type="button" (click)="removePreparation(i)"><span class="fa fa-minus fa-sm"></span> Remove Step</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-sm" type="button" (click)="addPreparation(i)"><span class="fa fa-plus fa-sm"></span> Add Step</button>    
+
+    
+    <div class="d-flex mt-5">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+  </form>
+</div>
