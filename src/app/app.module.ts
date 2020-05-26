@@ -9,18 +9,22 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import 'hammerjs';
 import { CatalogComponent } from './catalog/catalog.component';
 import { RecipedetailComponent } from './recipedetail/recipedetail.component';
 import { RecipeService } from './services/recipe.service';
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { SharerecipeComponent } from './sharerecipe/sharerecipe.component';
+
+import { baseURL } from './shared/baseurl';
 
 @NgModule({
   declarations: [
@@ -36,6 +40,7 @@ import { SharerecipeComponent } from './sharerecipe/sharerecipe.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatListModule,
     MatGridListModule,
@@ -46,7 +51,9 @@ import { SharerecipeComponent } from './sharerecipe/sharerecipe.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [RecipeService],
+  providers: [RecipeService,
+    ProcessHTTPMsgService,
+    {provide: 'BaseURL', useValue: baseURL}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

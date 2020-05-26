@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 import { Recipe } from '../shared/recipe';
 import { RecipeService } from '../services/recipe.service';
@@ -14,6 +14,7 @@ export class CatalogComponent implements OnInit {
   @ViewChild('grid') grid: MatGridList;
 
   recipes: Recipe[];
+  errMess: string;
   gridByBreakpoint = {
     xl: 2,
     lg: 2,
@@ -24,10 +25,12 @@ export class CatalogComponent implements OnInit {
 
 
   constructor(private recipeService: RecipeService,
+    @Inject('BaseURL') private BaseURL,
     private observableMedia: ObservableMedia) { }
 
   ngOnInit() {
-    this.recipeService.getRecipes().subscribe(recipes => this.recipes = recipes);
+    this.recipeService.getRecipes().subscribe(recipes => this.recipes = recipes,
+      errmess => this.errMess = <any>errmess);
   }
 
   ngAfterContentInit() {

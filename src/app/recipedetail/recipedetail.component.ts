@@ -1,9 +1,10 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Inject} from '@angular/core';
 import { Recipe } from '../shared/recipe';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { RecipeService } from '../services/recipe.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-recipedetail',
@@ -13,15 +14,19 @@ import { RecipeService } from '../services/recipe.service';
 export class RecipedetailComponent implements OnInit {
 
   recipe: Recipe;
+  recipeIds: string[];
+  errMess: string;
 
   constructor(private recipeservice: RecipeService,
     private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location,
+    @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
-    let id = this.route.snapshot.params['id'];
-    this.recipeservice.getRecipe(id)
-      .subscribe(recipe => this.recipe = recipe);
+    this.recipeservice.getRecipeIds().subscribe(recipeIds => this.recipeIds = recipeIds);
+    this.route.params.pipe(switchMap((params: Params) => this.recipeservice.getRecipe(params['id'])))
+    .subscribe(recipe => { this.recipe = recipe},
+      errmess => this.errMess = <any>errmess);
   }
 
   goBack(): void {

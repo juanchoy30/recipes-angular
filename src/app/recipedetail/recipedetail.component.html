@@ -13,7 +13,7 @@
           <h3>{{recipe.name}}</h3>
         </mat-card-title>
       </mat-card-header>
-      <img class="img-card" mat-card-image src={{recipe.image}} alt={{recipe.name}}>
+      <img class="img-card" mat-card-image src="{{ BaseURL + recipe.image }}" alt={{recipe.name}}>
       <mat-card-content>
         <p>{{recipe.description}}</p>
         <div class="row">
@@ -40,11 +40,17 @@
     </mat-card>
   </div>
 
-  <div [hidden]="recipe">
+  <div [hidden]="recipe || errMess">
     <div class="spinner-grow text-warning" role="status">
       <span class="sr-only"></span>
     </div>
     <h4>Loading . . . Please Wait</h4>
   </div>
+
+<div>
+<div fxFlex *ngIf="errMess">
+  <h2>Error</h2>
+  <h4>{{errMess}}</h4>
+</div>
   
 </div>
