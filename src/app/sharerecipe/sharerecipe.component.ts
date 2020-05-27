@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { Recipe, Category } from '../shared/recipe';
-import { RecipeService } from '../services/recipe.service';
+import { SubmitrecipeService } from '../services/submitrecipe.service';
 
 @Component({
   selector: 'app-sharerecipe',
@@ -14,10 +16,12 @@ export class SharerecipeComponent implements OnInit {
   shareForm: FormGroup;
   sharerecipe: Recipe;
   category = Category;
+  recipecopy : Recipe;
+  errMess: string;
+  selectedFile: File = null;
 
   formErrors = {
     'name': '',
-    'image': '',
     'description': '',
     'ingredient': '',
     'content': ''
@@ -25,21 +29,24 @@ export class SharerecipeComponent implements OnInit {
 
   validationMessages = {
     'name': {'required': 'Dish name is required. Please, give your dish a name'},
-    'image': {'required': 'Image is required'},
     'description': {'required': 'Description of the dish is required. Please give a brief description'},
     'ingredient': {'required': 'Please do not leave empty fields'},
     'content': {'required': 'Please do not leave empty fields'}
   }
 
   constructor(private fb: FormBuilder,
-    private recipeservice: RecipeService) { this.createForm(); }
+    private submitrecipeservice: SubmitrecipeService,
+    private route: ActivatedRoute,
+    private location: Location,
+    @Inject('BaseURL') private BaseURL) { this.createForm(); }
 
   ngOnInit() {
   }
   createForm() {
     this.shareForm = this.fb.group({
+      id: '',
       name: ['', Validators.required],
-      image: ['', Validators.required],
+      image: '',
       category: 'Others',
       description: ['', Validators.required],
       ingredients: this.fb.array([]),
@@ -67,9 +74,9 @@ export class SharerecipeComponent implements OnInit {
     this.ingredients().push(this.newIngredient());
  }
 
- removeIngredients(i:number) {
-  this.ingredients().removeAt(i);
-}
+  removeIngredients(i:number) {
+    this.ingredients().removeAt(i);
+  }
 
   //Preparation
   
@@ -77,20 +84,20 @@ export class SharerecipeComponent implements OnInit {
     return this.shareForm.get("preparation") as FormArray
   }
 
-newPreparation(): FormGroup {
+  newPreparation(): FormGroup {
     return this.fb.group({
       step: '',
       content: ['', Validators.required]
     });
-}
+  }
 
-addPreparation() {
-  this.preparation().push(this.newPreparation());
-}
+  addPreparation() {
+    this.preparation().push(this.newPreparation());
+  }
 
-removePreparation(i:number) {
-  this.preparation().removeAt(i);
-}
+  removePreparation(i:number) {
+    this.preparation().removeAt(i);
+  }
 
   //onValuechange
   onValueChanged(data?: any) {
@@ -114,13 +121,14 @@ removePreparation(i:number) {
   }
 
 
-
   onSubmit() {
-    this.sharerecipe = this.shareForm.value;
-    console.log(this.sharerecipe);
+    this.shareForm.value.image = 'images/' + this.shareForm.value.category + '.jpg'
+    this.recipecopy = this.shareForm.value;
+    this.submitrecipeservice.submitRecipe(this.recipecopy)
+    .subscribe(sharerecipe => {this.sharerecipe = sharerecipe;
+      console.log(this.sharerecipe);});
     this.shareForm.reset({
       name: '',
-      image: '',
       category: 'Others',
       description: '',
       ingredients: this.fb.array([]),
