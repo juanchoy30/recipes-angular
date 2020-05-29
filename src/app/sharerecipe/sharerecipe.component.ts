@@ -55,8 +55,8 @@ export class SharerecipeComponent implements OnInit {
       image: '',
       category: 'Others',
       description: ['', Validators.required],
-      ingredients: this.fb.array([]),
-      preparation: this.fb.array([]),
+      ingredients: this.fb.array([]), //define as array
+      preparation: this.fb.array([]), //define as array
     });
 
     this.shareForm.valueChanges
@@ -68,42 +68,42 @@ export class SharerecipeComponent implements OnInit {
   //Ingredients
   ingredients() : FormArray {
     return this.shareForm.get("ingredients") as FormArray
-  }
+  } //Gets the ingredients array of the shareform
 
   newIngredient(): FormGroup {
     return this.fb.group({
       ingredient: ['', Validators.required]
     })
- }
+ } //Makes the inside element of the array
  
   addIngredients() {
     this.ingredients().push(this.newIngredient());
- }
+ } //Adds elements inside the array
 
   removeIngredients(i:number) {
     this.ingredients().removeAt(i);
-  }
+  }//removes elements inside the array 
 
   //Preparation
   
   preparation(): FormArray {
     return this.shareForm.get("preparation") as FormArray
-  }
+  } //Gets the preparation array of the shareform
 
   newPreparation(): FormGroup {
     return this.fb.group({
       step: '',
       content: ['', Validators.required]
-    });
-  }
+    }); 
+  }//Makes the inside element of the array
 
   addPreparation() {
     this.preparation().push(this.newPreparation());
-  }
+  } //Adds elements inside the array
 
   removePreparation(i:number) {
     this.preparation().removeAt(i);
-  }
+  }//removes elements inside the array
 
   //onValuechange
   onValueChanged(data?: any) {
