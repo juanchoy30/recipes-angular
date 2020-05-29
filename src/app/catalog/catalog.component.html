@@ -20,8 +20,8 @@
       <h4>{{errMess}}</h4>
   </div>
 
-  <div fxFlex>
-    <mat-grid-list class="margin" cols="2" #grid rowHeight="300px" gutterSize="5px">
+  <div fxFlex *ngIf="recipes" [@expand]>
+    <mat-grid-list class="margin" cols="2" cols.xs="1" cols.sm="1" rowHeight="300px" gutterSize="5px">
       <mat-grid-tile *ngFor="let recipe of recipes" [routerLink]="['/recipedetail', recipe.id]" appHighlight>
         <img matListAvatar src="{{ BaseURL + recipe.image }}" alt={{recipe.name}}>
         <mat-grid-tile-footer class="text">

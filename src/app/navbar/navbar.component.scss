@@ -5,6 +5,10 @@ nav {
     z-index: 2;
 }
 
+.not-allowed {
+    cursor: not-allowed;
+}
+
 a:visited {
     color: white;
 }

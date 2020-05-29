@@ -1,14 +1,19 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Recipe, Category } from '../shared/recipe';
 import { SubmitrecipeService } from '../services/submitrecipe.service';
+import { expand } from '../animations/app.animation';
+
 
 @Component({
   selector: 'app-sharerecipe',
   templateUrl: './sharerecipe.component.html',
-  styleUrls: ['./sharerecipe.component.scss']
+  styleUrls: ['./sharerecipe.component.scss'],
+  animations: [
+    expand()
+  ]
 })
 export class SharerecipeComponent implements OnInit {
 
@@ -18,7 +23,8 @@ export class SharerecipeComponent implements OnInit {
   category = Category;
   recipecopy : Recipe;
   errMess: string;
-  selectedFile: File = null;
+  spinnerVisible: boolean = false;
+
 
   formErrors = {
     'name': '',
@@ -122,19 +128,19 @@ export class SharerecipeComponent implements OnInit {
 
 
   onSubmit() {
+    //In order to select an image to the dish uploaded. (I coudn´t put a upload image button because json server only acepts javascript objects)
     this.shareForm.value.image = 'images/' + this.shareForm.value.category + '.jpg'
     this.recipecopy = this.shareForm.value;
+    this.spinnerVisible = true;
     this.submitrecipeservice.submitRecipe(this.recipecopy)
-    .subscribe(sharerecipe => {this.sharerecipe = sharerecipe;
-      console.log(this.sharerecipe);});
+    .subscribe(sharerecipe => { setTimeout(() => {
+      this.sharerecipe = sharerecipe;  this.spinnerVisible = false;
+      console.log(this.sharerecipe);
+      setTimeout(() => this.sharerecipe = null, 5000);}, 2000);},
+      errmess => this.errMess = <any>errmess);
     this.shareForm.reset({
-      name: '',
-      category: 'Others',
-      description: '',
-      ingredients: this.fb.array([]),
-      preparation: this.fb.array([]),
+      category: 'Others'
     });
-
     this.shareFormDirective.resetForm();
   }
 

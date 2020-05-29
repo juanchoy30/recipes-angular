@@ -6,10 +6,16 @@ import { Location } from '@angular/common';
 import { RecipeService } from '../services/recipe.service';
 import { switchMap } from 'rxjs/operators';
 
+import { expand } from '../animations/app.animation';
+
+
 @Component({
   selector: 'app-recipedetail',
   templateUrl: './recipedetail.component.html',
-  styleUrls: ['./recipedetail.component.scss']
+  styleUrls: ['./recipedetail.component.scss'],
+  animations: [
+    expand()
+  ]
 })
 export class RecipedetailComponent implements OnInit {
 

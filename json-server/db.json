@@ -349,6 +349,118 @@
           "content": "Bake in preheated oven for 20 minutes, or until bottom crust is lightly browned. Remove from oven and let set for 2 to 3 minutes before cutting."
         }
       ]
+    },
+    {
+      "id": "vi8Jftt",
+      "name": "Savory Garlic Marinated Steaks",
+      "image": "images/Meats.jpg",
+      "category": "Meats",
+      "description": "This beautiful marinade adds an exquisite flavor to these already tender steaks. The final result will be so tender and juicy, it will melt in your mouth.",
+      "ingredients": [
+        {
+          "ingredient": "½ cup balsamic vinegar"
+        },
+        {
+          "ingredient": "¼ cup soy sauce"
+        },
+        {
+          "ingredient": "3 tablespoons minced garlic"
+        },
+        {
+          "ingredient": "2 tablespoons honey"
+        },
+        {
+          "ingredient": "2 tablespoons olive oil"
+        },
+        {
+          "ingredient": "2 teaspoons ground black pepper"
+        },
+        {
+          "ingredient": "1 teaspoon Worcestershire sauce"
+        },
+        {
+          "ingredient": "1 teaspoon onion powder"
+        },
+        {
+          "ingredient": "½ teaspoon salt"
+        },
+        {
+          "ingredient": "½ teaspoon liquid smoke flavoring"
+        },
+        {
+          "ingredient": "1 pinch cayenne pepper"
+        },
+        {
+          "ingredient": "2 (1/2 pound) rib-eye steaks"
+        }
+      ],
+      "preparation": [
+        {
+          "step": "Step 1:",
+          "content": "In a medium bowl, mix the vinegar, soy sauce, garlic, honey, olive oil, ground black pepper, Worcestershire sauce, onion powder, salt, liquid smoke, and cayenne pepper.\n\n"
+        },
+        {
+          "step": "Step 2:",
+          "content": "Place steaks in a shallow glass dish with the marinade, and turn to coat. For optimum flavor, rub the liquid into the meat. Cover, and marinate in the refrigerator for 1 to 2 days.\n\n"
+        },
+        {
+          "step": "Step 3:",
+          "content": "Preheat grill for medium-high to high heat.\n\n"
+        },
+        {
+          "step": "Step 4:",
+          "content": "Lightly oil the grill grate. Grill steaks 7 minutes per side, or to desired doneness. Discard leftover marinade.\n\n"
+        }
+      ]
+    },
+    {
+      "id": "I1vcFQw",
+      "name": "Greek Zoodle Salad",
+      "image": "images/Salads.jpg",
+      "category": "Salads",
+      "description": "Zoodles (zucchini noodles) are all the rage and I keep looking for new ways to prepare them. I decided to combine my love of Greek salad with the zoodles and came up with this recipe. A great alternative to high-carb pasta salads!",
+      "ingredients": [
+        {
+          "ingredient": "2 zucchini"
+        },
+        {
+          "ingredient": "¼ English cucumber, chopped"
+        },
+        {
+          "ingredient": "10 cherry tomatoes, halved, or more to taste"
+        },
+        {
+          "ingredient": "10 pitted kalamata olives, halved, or more to taste"
+        },
+        {
+          "ingredient": "¼ cup thinly sliced red onion"
+        },
+        {
+          "ingredient": "2 ounces crumbled reduced-fat feta cheese"
+        },
+        {
+          "ingredient": "2 tablespoons extra-virgin olive oil"
+        },
+        {
+          "ingredient": "2 tablespoons fresh lemon juice"
+        },
+        {
+          "ingredient": "1 teaspoon dried oregano"
+        },
+        {
+          "ingredient": "salt and ground black pepper to taste"
+        }
+      ],
+      "preparation": [
+        {
+          "step": "Step 1:",
+          "content": "Cut zucchini into noodle-shaped strands using a spiralizing tool. Place \"zoodles\" in a large bowl and top with cucumber, tomatoes, olives, red onion, and feta cheese.\n\n"
+        },
+        {
+          "step": "Step 2:",
+          "content": "Whisk olive oil, lemon juice, oregano, salt, and pepper together in a bowl until dressing is smooth; pour over \"zoodle\" mixture and toss to coat. Marinate salad in refrigerator for 10 to 15 minutes.\n\n"
+        }
+      ]
     }
   ]
 }

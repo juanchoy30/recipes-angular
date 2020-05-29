@@ -10,16 +10,16 @@
   <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" mat-button routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>
+        <a class="nav-link not-allowed" routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>
       </li>
       <li>
-        <a class="nav-link" mat-button routerLinkActive="active"><span class="fa fa-info fa-lg"></span> About</a>
+        <a class="nav-link not-allowed" routerLinkActive="active"><span class="fa fa-info fa-lg"></span> About</a>
       </li>
       <li>
-        <a class="nav-link" mat-button routerLink='/catalog' routerLinkActive="active"><span class="fa fa-list fa-lg"></span> Catalog</a>
+        <a class="nav-link" routerLink='/catalog' routerLinkActive="active"><span class="fa fa-list fa-lg"></span> Catalog</a>
       </li>
       <li>
-        <a class="nav-link" mat-button routerLink='/sharerecipe' routerLinkActive="active"><span class="fa fa-upload fa-lg"></span> Share recipe</a>
+        <a class="nav-link" routerLink='/sharerecipe' routerLinkActive="active"><span class="fa fa-upload fa-lg"></span> Share recipe</a>
       </li>
     </ul>
   </div>

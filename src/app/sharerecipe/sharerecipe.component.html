@@ -4,7 +4,7 @@
 
   <h2 fxFlex>Share your recipe with us</h2>
 
-  <form fxFlex novalidate [formGroup]="shareForm" #Sform="ngForm" (ngSubmit)="onSubmit()">
+  <form fxFlex novalidate [formGroup]="shareForm" #Sform="ngForm" (ngSubmit)="onSubmit()" [hidden]="sharerecipe || spinnerVisible" [@expand]>
     <div class="form-group">
       <label for="name">Please give your dish name: </label>
       <input id="name" class="form-control" formControlName="name" placeholder="Dish Name" type="text" required>
@@ -64,4 +64,20 @@
     </div>
 
   </form>
+
+  <div [hidden]="!spinnerVisible || errMess">
+    <div class="spinner-grow text-warning" role="status">
+      <span class="sr-only"></span>
+    </div>
+    <h4>Loading . . . Please Wait</h4>
+  </div>
+
+  <div *ngIf="sharerecipe" [@expand]>
+    <h3>Your submission</h3>
+    <p>Name: {{sharerecipe.name}}</p>
+    <p>Dish Category: {{sharerecipe.category}}</p>
+    <p>Description: {{sharerecipe.description}}</p>
+  </div>
+
+
 </div>
